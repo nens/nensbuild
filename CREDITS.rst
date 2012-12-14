@@ -1,4 +1,4 @@
 Credits
 =======
 
-- TODO started this library
+- Roland van Laar started this library
