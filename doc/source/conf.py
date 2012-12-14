@@ -6,15 +6,15 @@
 
 import datetime
 
-project = "nens_build"
+project = "nensbuild"
 author = ""
 version = ""
 release = ""
 this_year = datetime.date.today().year
 copyright = '%s, %s' % (this_year, author)
 # Comment out one of these if we're a django project.
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'nens_build.testsettings'
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'nens_build.settings'
+#os.environ['DJANGO_SETTINGS_MODULE'] = 'nensbuild.testsettings'
+#os.environ['DJANGO_SETTINGS_MODULE'] = 'nensbuild.settings'
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the

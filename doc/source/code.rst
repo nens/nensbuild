@@ -1,6 +1,6 @@
 Code documentation
 ==================
 
-.. automodule:: nens_build.views
+.. automodule:: nensbuild.views
    :members:
 

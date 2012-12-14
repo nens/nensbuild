@@ -10,29 +10,31 @@ long_description = '\n\n'.join([
 
 install_requires = [
     'setuptools',
+    'fabric'
     ],
 
 tests_require = [
     ]
 
-setup(name='nens-build',
+setup(name='nensbuild',
       version=version,
       description="TODO",
       long_description=long_description,
       # Get strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[],
       keywords=[],
-      author='TODO',
-      author_email='TODO@nelen-schuurmans.nl',
+      author='Roland van Laar',
+      author_email='roland.vanlaar@nelen-schuurmans.nl',
       url='',
-      license='GPL',
-      packages=['nens_build'],
+      license='BSD',
+      packages=['nensbuild'],
       include_package_data=True,
       zip_safe=False,
       install_requires=install_requires,
       tests_require=tests_require,
-      extras_require = {'test': tests_require},
+      extras_require={'test': tests_require},
       entry_points={
           'console_scripts': [
+              'nensbuild = nensbuild.build:main',
           ]},
       )
