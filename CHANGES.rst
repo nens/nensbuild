@@ -2,7 +2,7 @@ Changelog of nens-build
 ===================================================
 
 
-0.1 (unreleased)
+0.1 (2012-12-15)
 ----------------
 
 - Remove use of external python libraries.
