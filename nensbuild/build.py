@@ -2,25 +2,24 @@ from __future__ import absolute_import, division
 from __future__ import print_function, unicode_literals
 
 
-from fabric.contrib.files import exists
-
-from fabric import local
+import os.path
+import subprocess
 
 
 def link():
     result_file = 'buildout.cfg'
-    if not exists(result_file):
-        local('ln -sf development.cfg %s' % result_file)
+    if not os.path.exists(result_file):
+        subprocess.call(['ln', '-sf', 'development.cfg', result_file])
 
 
 def bootstrap():
     result_file = 'bin/buildout'
-    if not exists(result_file):
-        local('python bootrap.py')
+    if not os.path.exists(result_file):
+        subprocess.call(['python', 'bootstrap.py'])
 
 
 def buildout():
-    local('bin/buildout')
+    subprocess.call(['bin/buildout'])
 
 
 def combine():
