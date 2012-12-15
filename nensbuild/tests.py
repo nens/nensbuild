@@ -10,14 +10,15 @@ from nensbuild import build
 class TestBuild(unittest.TestCase):
 
     def setUp(self):
-        patcher1 = mock.patch('subprocess.call')
-        patcher2 = mock.patch('os.path.exists')
+        self.patcher1 = mock.patch('subprocess.call')
+        self.patcher2 = mock.patch('os.path.exists')
 
-        self.call = patcher1.start()
-        self.exists = patcher2.start()
+        self.call = self.patcher1.start()
+        self.exists = self.patcher2.start()
 
-        self.addCleanup(patcher1.stop)
-        self.addCleanup(patcher2.stop)
+    def tearDown(self):
+        self.patcher1.stop()
+        self.patcher2.stop()
 
     def test_create_link(self):
         self.exists.return_value = False
