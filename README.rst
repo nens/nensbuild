@@ -1,6 +1,9 @@
 NENS Build
 ============
 
+.. image:: https://secure.travis-ci.org/nens/nensbuild.png?branch=master
+   :target: http://travis-ci.org/nens/nensbuild/
+
 At Nelen & Schuurmans_ we use a couple commands to get a development environment
 up and running::
 
