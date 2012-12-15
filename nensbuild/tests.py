@@ -47,7 +47,8 @@ class TestBuild(unittest.TestCase):
         self.assertTrue(call.called)
         call.assert_called_with(['bin/buildout'])
 
-    @mock.patch('os.path.exists', return_value=False)
     @mock.patch('subprocess.call')
-    def run_all(self):
-        build.main()
+    def test_run_all(self, call):
+        with mock.patch('os.path.exists', return_value=False):
+            build.main()
+        self.assertEqual(call.call_count, 3)
