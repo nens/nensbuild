@@ -5,7 +5,7 @@ Changelog of nens-build
 0.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix classifiers for release on pypi.
 
 
 0.1 (2012-12-15)
