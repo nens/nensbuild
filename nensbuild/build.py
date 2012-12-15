@@ -22,7 +22,9 @@ def buildout():
     subprocess.call(['bin/buildout'])
 
 
-def combine():
+def main():
+    """Run all commands."""
+
     link()
     bootstrap()
     buildout()

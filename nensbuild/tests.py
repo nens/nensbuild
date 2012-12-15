@@ -46,3 +46,8 @@ class TestBuild(unittest.TestCase):
         build.buildout()
         self.assertTrue(call.called)
         call.assert_called_with(['bin/buildout'])
+
+    @mock.patch('os.path.exists', return_value=False)
+    @mock.patch('subprocess.call')
+    def run_all(self):
+        build.main()
