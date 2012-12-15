@@ -10,45 +10,37 @@ from nensbuild import build
 class TestBuild(unittest.TestCase):
 
     @mock.patch('subprocess.call')
-    def test_create_link(self, call):
+    def run_func(self, func, exists_return_value, subprocess_call):
         with mock.patch('os.path.exists',
-                        return_value=False):
-            build.link()
+                        return_value=exists_return_value):
+            func()
+        return subprocess_call
+
+    def test_create_link(self):
+        call = self.run_func(build.link, False)
         self.assertTrue(call.called)
         call.assert_called_with(
             ['ln', '-sf', 'development.cfg', 'buildout.cfg'])
 
-    @mock.patch('subprocess.call')
-    def test_not_create_link(self, call):
-        with mock.patch('os.path.exists',
-                        return_value=True):
-            build.link()
+    def test_not_create_link(self):
+        call = self.run_func(build.link, True)
         self.assertFalse(call.called)
 
-    @mock.patch('subprocess.call')
-    def test_run_boostrap(self, call):
-        with mock.patch('os.path.exists',
-                        return_value=False):
-            build.bootstrap()
+    def test_run_boostrap(self):
+        call = self.run_func(build.bootstrap, False)
         self.assertTrue(call.called)
         call.assert_called_with(
             ['python', 'bootstrap.py'])
 
-    @mock.patch('subprocess.call')
-    def test_not_run_bootstrap(self, call):
-        with mock.patch('os.path.exists',
-                        return_value=True):
-            build.bootstrap()
+    def test_not_run_bootstrap(self):
+        call = self.run_func(build.bootstrap, True)
         self.assertFalse(call.called)
 
-    @mock.patch('subprocess.call')
-    def test_run_buildout(self, call):
-        build.buildout()
+    def test_run_buildout(self):
+        call = self.run_func(build.buildout, False)
         self.assertTrue(call.called)
         call.assert_called_with(['bin/buildout'])
 
-    @mock.patch('subprocess.call')
-    def test_run_all(self, call):
-        with mock.patch('os.path.exists', return_value=False):
-            build.main()
+    def test_run_all(self):
+        call = self.run_func(build.main, False)
         self.assertEqual(call.call_count, 3)
