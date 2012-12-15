@@ -18,14 +18,23 @@ tests_require = [
 
 setup(name='nensbuild',
       version=version,
-      description="TODO",
+      description="One step buildout build.",
       long_description=long_description,
       # Get strings from http://www.python.org/pypi?%3Aaction=list_classifiers
-      classifiers=[],
+      classifiers=[
+          'Development Status :: 4 - Beta'
+          'Environment :: Console',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: BSD License',
+          'Operating System :: Unix',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
+          'Topic :: Software Development :: Build Tools',
+      ],
       keywords=[],
       author='Roland van Laar',
       author_email='roland.vanlaar@nelen-schuurmans.nl',
-      url='',
+      url='http://github.com/nens/nensbuild',
       license='BSD',
       packages=['nensbuild'],
       include_package_data=True,
