@@ -4,6 +4,15 @@ from __future__ import print_function, unicode_literals
 
 import os.path
 import subprocess
+import sys
+
+
+def get_bash_path():
+    try:
+        return subprocess.check_output(['which', 'bash']).strip()
+    except subprocess.CalledProcessError:
+        sys.stderr.write('Bash not found, please install bash')
+        sys.exit(1)
 
 
 def link():
@@ -19,7 +28,8 @@ def bootstrap():
 
 
 def buildout():
-    subprocess.call(['bin/buildout'])
+    bash = get_bash_path()
+    subprocess.call([bash, '-c', 'bin/buildout'])
 
 
 def main():
