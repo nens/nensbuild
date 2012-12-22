@@ -2,7 +2,7 @@ Changelog of nens-build
 ===================================================
 
 
-0.3 (unreleased)
+0.3 (2012-12-22)
 ----------------
 
 - Add travis-ci support.
