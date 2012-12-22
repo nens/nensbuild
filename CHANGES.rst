@@ -6,6 +6,8 @@ Changelog of nens-build
 ----------------
 
 - Add travis-ci support.
+- Use bash as shell for running buildout. Fixes an issue with running nensbuild
+  on a Vagrant virtual box. Fixes gh-1.
 
 
 0.2 (2012-12-15)
