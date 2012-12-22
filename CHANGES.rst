@@ -5,7 +5,7 @@ Changelog of nens-build
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Drop python2.6 support (again). subprocess.check_output is nw in python 2.7.
 
 
 0.3 (2012-12-22)
