@@ -2,7 +2,7 @@ Changelog of nens-build
 ===================================================
 
 
-0.4 (unreleased)
+0.4 (2013-02-05)
 ----------------
 
 - Add sysegg check. This depends on the new syseggrecipe.
