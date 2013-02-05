@@ -5,7 +5,7 @@ Changelog of nens-build
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Check earlier for sysegg installation.
 
 
 0.4 (2013-02-05)

@@ -15,6 +15,12 @@ def get_bash_path():
         sys.exit(1)
 
 
+def is_sysegg_in_buildout():
+    return (
+        'recipe= syseggrecipe' in
+        subprocess.check_output(['bin/buildout', 'annotate']))
+
+
 def link():
     result_file = 'buildout.cfg'
     if not os.path.exists(result_file):
@@ -27,21 +33,15 @@ def bootstrap():
         subprocess.call(['python', 'bootstrap.py'])
 
 
-def buildout():
-    bash = get_bash_path()
-    subprocess.call([bash, '-c', 'bin/buildout'])
-
-
-def is_sysegg_in_buildout():
-    return (
-        'recipe= syseggrecipe' in
-        subprocess.check_output(['bin/buildout', 'annotate']))
-
-
 def check_sysegg():
     if is_sysegg_in_buildout():
         subprocess.call(['bin/buildout', 'sysegg:force-sysegg=false',
                          'install', 'sysegg'])
+
+
+def buildout():
+    bash = get_bash_path()
+    subprocess.call([bash, '-c', 'bin/buildout'])
 
 
 def main():
@@ -49,5 +49,5 @@ def main():
 
     link()
     bootstrap()
-    buildout()
     check_sysegg()
+    buildout()
