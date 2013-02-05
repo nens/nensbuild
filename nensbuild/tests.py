@@ -71,7 +71,12 @@ class TestBuild(unittest.TestCase):
             build.buildout()
         self.call.assert_called_with(['/bin/bash', '-c', 'bin/buildout'])
 
+    def test_run_check_sysegg(self):
+        build.check_sysegg()
+        self.call.assert_called_with(
+            ['bin/buildout', 'sysegg:force-sysegg=false', 'install', 'sysegg'])
+
     def test_run_all(self):
         self.exists.return_value = False
         build.main()
-        self.assertEqual(self.call.call_count, 3)
+        self.assertEqual(self.call.call_count, 4)

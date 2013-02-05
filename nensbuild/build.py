@@ -32,9 +32,15 @@ def buildout():
     subprocess.call([bash, '-c', 'bin/buildout'])
 
 
+def check_sysegg():
+    subprocess.call(['bin/buildout', 'sysegg:force-sysegg=false',
+                     'install', 'sysegg'])
+
+
 def main():
     """Run all commands."""
 
     link()
     bootstrap()
     buildout()
+    check_sysegg()

@@ -5,6 +5,7 @@ Changelog of nens-build
 0.4 (unreleased)
 ----------------
 
+- Add sysegg check. This depends on the new syseggrecipe.
 - Drop python2.6 support (again). subprocess.check_output is nw in python 2.7.
 
 
