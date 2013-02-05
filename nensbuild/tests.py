@@ -71,12 +71,42 @@ class TestBuild(unittest.TestCase):
             build.buildout()
         self.call.assert_called_with(['/bin/bash', '-c', 'bin/buildout'])
 
+    def test_enabled_sysegg(self):
+        with mock.patch('subprocess.check_output',
+                        return_value='recipe= syseggrecipe\n') as output:
+            enabled = build.enabled_sysegg()
+        self.assertTrue(enabled)
+        output.assert_called_with(
+            ['bin/buildout', 'annotate'])
+
+    def test_not_enabled_sysegg(self):
+        with mock.patch('subprocess.check_output',
+                        return_value='random string.alkjfdasdf') as output:
+            enabled = build.enabled_sysegg()
+        self.assertFalse(enabled)
+        output.assert_called_with(
+            ['bin/buildout', 'annotate'])
+
+    def test_not_run_check_sysegg(self):
+        with mock.patch.object(build, 'enabled_sysegg',
+                               return_value=False):
+            build.check_sysegg()
+
+        self.assertFalse(self.call.called)
+
     def test_run_check_sysegg(self):
-        build.check_sysegg()
+        with mock.patch.object(build, 'enabled_sysegg',
+                               return_value=True):
+            build.check_sysegg()
+
         self.call.assert_called_with(
             ['bin/buildout', 'sysegg:force-sysegg=false', 'install', 'sysegg'])
 
     def test_run_all(self):
         self.exists.return_value = False
-        build.main()
+
+        with mock.patch.object(build, 'enabled_sysegg',
+                               return_value=True):
+            build.main()
+
         self.assertEqual(self.call.call_count, 4)

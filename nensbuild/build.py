@@ -32,9 +32,16 @@ def buildout():
     subprocess.call([bash, '-c', 'bin/buildout'])
 
 
+def enabled_sysegg():
+    return (
+        'recipe= syseggrecipe' in
+        subprocess.check_output(['bin/buildout', 'annotate']))
+
+
 def check_sysegg():
-    subprocess.call(['bin/buildout', 'sysegg:force-sysegg=false',
-                     'install', 'sysegg'])
+    if enabled_sysegg():
+        subprocess.call(['bin/buildout', 'sysegg:force-sysegg=false',
+                         'install', 'sysegg'])
 
 
 def main():
