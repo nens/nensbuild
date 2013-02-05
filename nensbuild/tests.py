@@ -74,7 +74,7 @@ class TestBuild(unittest.TestCase):
     def test_enabled_sysegg(self):
         with mock.patch('subprocess.check_output',
                         return_value='recipe= syseggrecipe\n') as output:
-            enabled = build.enabled_sysegg()
+            enabled = build.is_sysegg_in_buildout()
         self.assertTrue(enabled)
         output.assert_called_with(
             ['bin/buildout', 'annotate'])
@@ -82,20 +82,20 @@ class TestBuild(unittest.TestCase):
     def test_not_enabled_sysegg(self):
         with mock.patch('subprocess.check_output',
                         return_value='random string.alkjfdasdf') as output:
-            enabled = build.enabled_sysegg()
+            enabled = build.is_sysegg_in_buildout()
         self.assertFalse(enabled)
         output.assert_called_with(
             ['bin/buildout', 'annotate'])
 
     def test_not_run_check_sysegg(self):
-        with mock.patch.object(build, 'enabled_sysegg',
+        with mock.patch.object(build, 'is_sysegg_in_buildout',
                                return_value=False):
             build.check_sysegg()
 
         self.assertFalse(self.call.called)
 
     def test_run_check_sysegg(self):
-        with mock.patch.object(build, 'enabled_sysegg',
+        with mock.patch.object(build, 'is_sysegg_in_buildout',
                                return_value=True):
             build.check_sysegg()
 
@@ -105,7 +105,7 @@ class TestBuild(unittest.TestCase):
     def test_run_all(self):
         self.exists.return_value = False
 
-        with mock.patch.object(build, 'enabled_sysegg',
+        with mock.patch.object(build, 'is_sysegg_in_buildout',
                                return_value=True):
             build.main()
 
